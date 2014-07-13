@@ -10,7 +10,7 @@ public class SortsController implements Runnable {
 	private SortContext[] sortContexts;
 	private boolean isStopClicked;
 	private Main main;
-	private int randomness;
+	private Randomness randomness;
 
 	public void run() {
 
@@ -59,9 +59,8 @@ public class SortsController implements Runnable {
 	private int[] getRandomValues() {
 
 		int[] values = new int[Constants.SORT_SIZE];
-		RandomValues randomValue = RandomValues.values()[randomness];
 
-		switch (randomValue) {
+		switch (randomness) {
 			case RANDOM:
 				for (int j = 0; j < Constants.SORT_SIZE; j++) {
 					values[j] = (int) (Math.random() * Constants.SORT_MAX_VALUE);
@@ -146,9 +145,9 @@ public class SortsController implements Runnable {
 		return main;
 	}
 
-	public void setRandomness(int i) {
+	public void setRandomness(Randomness randomness) {
 
-		randomness = i;
+		this.randomness = randomness;
 
 	}
 }

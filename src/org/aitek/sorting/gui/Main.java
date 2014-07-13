@@ -2,14 +2,9 @@ package org.aitek.sorting.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JSlider;
-import javax.swing.SpringLayout;
-import javax.swing.ToolTipManager;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -22,7 +17,7 @@ import org.aitek.sorting.algorithms.RadixSort;
 import org.aitek.sorting.algorithms.SelectionSort;
 import org.aitek.sorting.algorithms.ShellSort;
 import org.aitek.sorting.core.Constants;
-import org.aitek.sorting.core.RandomValues;
+import org.aitek.sorting.core.Randomness;
 import org.aitek.sorting.core.SortContext;
 import org.aitek.sorting.core.SortsController;
 import org.aitek.sorting.utils.SwingUtils;
@@ -30,7 +25,8 @@ import org.aitek.sorting.utils.SwingUtils;
 public class Main extends JFrame implements ActionListener, ChangeListener {
 
 	private static final long serialVersionUID = 0L;
-	private JButton jbStop;
+    private final JComboBox randomnessCombo;
+    private JButton jbStop;
 	private JButton jbStart;
 	private JButton jbStep;
 	private boolean isFinished;
@@ -86,10 +82,10 @@ public class Main extends JFrame implements ActionListener, ChangeListener {
 
 		JLabel speedLabel = new JLabel("Speed: ");
 		add(speedLabel);
-		sl.putConstraint(SpringLayout.WEST, speedLabel, 10, SpringLayout.EAST, jbShuffle);
+		sl.putConstraint(SpringLayout.WEST, speedLabel, 20, SpringLayout.EAST, jbShuffle);
 		sl.putConstraint(SpringLayout.SOUTH, speedLabel, -10, SpringLayout.SOUTH, this.getContentPane());
 
-		JSlider speedSlider = new JSlider(JSlider.HORIZONTAL, 1, 200, 50);
+		JSlider speedSlider = new JSlider(JSlider.HORIZONTAL, 1, 1000, 50);
 		sortsController.setSpeed(50);
 		speedSlider.setName("speed");
 		add(speedSlider);
@@ -100,23 +96,18 @@ public class Main extends JFrame implements ActionListener, ChangeListener {
 
 		JLabel randomnessLabel = new JLabel("Randomness: ");
 		add(randomnessLabel);
-		sl.putConstraint(SpringLayout.WEST, randomnessLabel, 10, SpringLayout.EAST, speedSlider);
+		sl.putConstraint(SpringLayout.WEST, randomnessLabel, 20, SpringLayout.EAST, speedSlider);
 		sl.putConstraint(SpringLayout.SOUTH, randomnessLabel, -10, SpringLayout.SOUTH, this.getContentPane());
 
-		JSlider randomnessSlider = new JSlider(JSlider.HORIZONTAL, 0, 3, 0);
-		sortsController.setRandomness(0);
-		add(randomnessSlider);
-		randomnessSlider.setName("randomness");
-		randomnessSlider.addChangeListener(this);
+        randomnessCombo = new JComboBox(Randomness.values());
+        randomnessCombo.addActionListener(this);
+        randomnessCombo.setName("randomness");
+        add(randomnessCombo);
+        sortsController.setRandomness(Randomness.RANDOM);
 
-		sl.putConstraint(SpringLayout.WEST, randomnessSlider, 0, SpringLayout.EAST, randomnessLabel);
-		sl.putConstraint(SpringLayout.EAST, randomnessSlider, 80, SpringLayout.EAST, randomnessLabel);
-		sl.putConstraint(SpringLayout.SOUTH, randomnessSlider, -10, SpringLayout.SOUTH, this.getContentPane());
-
-		randomnessValueLabel = new JLabel("Random");
-		add(randomnessValueLabel);
-		sl.putConstraint(SpringLayout.WEST, randomnessValueLabel, 5, SpringLayout.EAST, randomnessSlider);
-		sl.putConstraint(SpringLayout.SOUTH, randomnessValueLabel, -10, SpringLayout.SOUTH, this.getContentPane());
+		sl.putConstraint(SpringLayout.WEST, randomnessCombo, 0, SpringLayout.EAST, randomnessLabel);
+//		sl.putConstraint(SpringLayout.EAST, randomnessCombo, 80, SpringLayout.EAST, randomnessLabel);
+		sl.putConstraint(SpringLayout.SOUTH, randomnessCombo, -5, SpringLayout.SOUTH, this.getContentPane());
 
 		BubbleSort bubbleSort = new BubbleSort(sortsController);
 		SortPanel bubblePanel = new SortPanel("Bubble Sort", bubbleSort);
@@ -249,6 +240,20 @@ public class Main extends JFrame implements ActionListener, ChangeListener {
 
 				sortsController.shuffle();
 			}
+            else if (e.getActionCommand().equals("comboBoxChanged")) {
+
+                JComboBox cb = (JComboBox)e.getSource();
+                Randomness randomness =  Randomness.get(cb.getSelectedItem().toString());
+                sortsController.setRandomness(randomness);
+                try {
+//                    sortsController.shuffle();
+                }
+                catch (Exception e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+
+            }
 		}
 		catch (Exception ex) {
 			SwingUtils.showFormError(ex);
@@ -267,20 +272,8 @@ public class Main extends JFrame implements ActionListener, ChangeListener {
 	@Override
 	public void stateChanged(ChangeEvent e) {
 
-		JSlider slider = (JSlider) e.getSource();
+        JSlider slider = (JSlider) e.getSource();
 		if (slider.getName().equals("speed")) sortsController.setSpeed(slider.getValue());
-		if (slider.getName().equals("randomness")) {
-			sortsController.setRandomness(slider.getValue());
-			randomnessValueLabel.setText(RandomValues.values()[slider.getValue()].getValue());
-			try {
-				sortsController.shuffle();
-			}
-			catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
-
 	}
 
 }
