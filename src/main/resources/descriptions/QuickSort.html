@@ -16,7 +16,7 @@
 <pre>
 private int[] quicksort(int[] array, int lo, int hi) {
         
-    if (hi > lo) {
+    if (hi &gt; lo) {
         int pivotIndex = (int) (Math.random() * (hi - lo) + lo);
         newPivotIndex = partition(array, lo, hi, pivotIndex);
         quicksort(array, lo, newPivotIndex - 1);
@@ -31,7 +31,7 @@ private int partition(int[] array, int lo, int hi, int pivotIndex) {
     swap(array, pivotIndex, hi);
     index = lo;
     for (i = lo; i &lt; hi; i++) {
-       if (array[i] <= pivotValue) {
+       if (array[i] &lt;= pivotValue) {
             swap(array, i, index);
             index++;
         }

@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 public class Main extends JFrame implements ActionListener, ChangeListener {
 
     private static final long serialVersionUID = 0L;
+    private static final String RANDOMNESS_TOOLTIP = "After you've chosen a new randomness, re-shuffle the values to see it.";
     private final JComboBox randomnessCombo;
     SortsController sortsController;
     private JButton jbStop;
@@ -88,10 +89,12 @@ public class Main extends JFrame implements ActionListener, ChangeListener {
         add(randomnessLabel);
         sl.putConstraint(SpringLayout.WEST, randomnessLabel, 20, SpringLayout.EAST, speedSlider);
         sl.putConstraint(SpringLayout.SOUTH, randomnessLabel, -10, SpringLayout.SOUTH, this.getContentPane());
+        randomnessLabel.setToolTipText(RANDOMNESS_TOOLTIP);
 
         randomnessCombo = new JComboBox(Randomness.values());
         randomnessCombo.addActionListener(this);
         randomnessCombo.setName("randomness");
+        randomnessCombo.setToolTipText(RANDOMNESS_TOOLTIP);
         add(randomnessCombo);
         sortsController.setRandomness(Randomness.RANDOM);
 

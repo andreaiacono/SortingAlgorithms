@@ -15,19 +15,19 @@ int bits = 1;
 int[] b = new int[values.length];
 
 int rshift = 0;
-for (int mask = ~(-1 << bits); mask != 0; mask <<= bits, rshift += bits) {
-	int[] cntarray = new int[1 << bits];
+for (int mask = ~(-1 &lt;&lt; bits); mask != 0; mask &lt;&lt;= bits, rshift += bits) {
+	int[] cntarray = new int[1 &lt;&lt; bits];
 
-	for (p = 0; p < values.length; ++p) {
-		int key = (values[p] & mask) >> rshift;
+	for (p = 0; p &lt; values.length; ++p) {
+		int key = (values[p] &amp; mask) &gt;&gt; rshift;
 		++cntarray[key];
 	}
 
-	for (int i = 1; i < cntarray.length; ++i)
+	for (int i = 1; i &lt; cntarray.length; ++i)
 		cntarray[i] += cntarray[i - 1];
 
 	for (p = a.length - 1; p >= 0; --p) {
-		int key = (values[p] & mask) >> rshift;
+		int key = (values[p] &amp; mask) &gt;&gt; rshift;
 		--cntarray[key];
 		b[cntarray[key]] = values[p];
 	}

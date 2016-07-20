@@ -16,7 +16,7 @@
 <pre>
 private void mergeSort(int[] a, int[] vectorTemp, int left, int right) {
 
-	if (left < right) {
+	if (left &lt; right) {
 		int center = (left + right) / 2;
 		mergeSort(a, vectorTemp, left, center);
 		mergeSort(a, vectorTemp, center + 1, right);
@@ -33,18 +33,18 @@ private void merge(int[] a, int[] vectorAux, int posLeft, int posRight, int posE
 	int posAux = posLeft;
 	int numElemen = posEnd - posLeft + 1;
 
-	while (posLeft <= endLeft && posRight <= posEnd) {
-		if ((a[posLeft]) < (a[posRight])) vectorAux[posAux++] = a[posLeft++];
+	while (posLeft &lt;= endLeft &amp;&amp; posRight &lt;= posEnd) {
+		if ((a[posLeft]) &lt; (a[posRight])) vectorAux[posAux++] = a[posLeft++];
 		else vectorAux[posAux++] = a[posRight++];
 	}
 
-	while (posLeft <= endLeft)
+	while (posLeft &lt;= endLeft)
 		vectorAux[posAux++] = a[posLeft++];
 
-	while (posRight <= posEnd)
+	while (posRight &lt;= posEnd)
 		vectorAux[posAux++] = a[posRight++];
 
-	for (int i = 0; i < numElemen; i++, posEnd--)
+	for (int i = 0; i &lt; numElemen; i++, posEnd--)
 		a[posEnd] = vectorAux[posEnd];
 }
 </pre>

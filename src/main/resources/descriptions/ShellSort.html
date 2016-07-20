@@ -14,11 +14,11 @@
 <pre>
 int n = values.length;
 int inc = Math.round(n / 2);
-while (inc > 0) {
-	for (int i = inc; i <= n - 1; i++) {
+while (inc &gt; 0) {
+	for (int i = inc; i &lt;= n - 1; i++) {
 		temp = values[i];
 		j = i;
-		while (j >= inc && values[j - inc] > temp) {
+		while (j &gt;= inc &amp;&amp; values[j - inc] &gt; temp) {
 			values[j] = values[j - inc];
 			j = j - inc;
 

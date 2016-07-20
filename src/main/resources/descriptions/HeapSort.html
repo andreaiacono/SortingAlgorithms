@@ -15,11 +15,11 @@
 <b>Source code</b>:<br/>
 public int[] heapsort(int[] values) {
 
-	for (i = values.length / 2; i >= 0; i--) {
+	for (i = values.length / 2; i &gt;= 0; i--) {
 		percDown(i, values.length);
 	}
 
-	for (i = values.length - 1; i > 0; i--) {
+	for (i = values.length - 1; i &gt; 0; i--) {
 		swap(0, i);
 		percDown(0, i);
 	}
@@ -33,10 +33,10 @@ private int leftChild(int i) {
 
 private void percDown(int i, int n) {
 
-	for (int tmp = values[i]; leftChild(i) < n; i = child) {
+	for (int tmp = values[i]; leftChild(i) &lt; n; i = child) {
 		child = leftChild(i);
-		if (child != n - 1 && values[child] < values[child + 1]) child++;
-		if (tmp < values[child]) values[i] = values[child];
+		if (child != n - 1 &amp;&amp; values[child] &lt; values[child + 1]) child++;
+		if (tmp &lt; values[child]) values[i] = values[child];
 		else break;
 	}
 	values[i] = tmp;
