@@ -73,9 +73,16 @@ public class SortsController implements Runnable {
 				}
 				Arrays.sort(values);
 				for (int j = 0; j < Constants.SORT_SIZE; j++) {
-					if (Math.random() > 0.80) values[j] = (int) (Math.random() * Constants.SORT_MAX_VALUE);
+					if (Math.random() > 0.85) values[j] = (int) (Math.random() * Constants.SORT_MAX_VALUE);
 				}
 			break;
+
+            case ALREADY_SORTED:
+                for (int j = 0; j < Constants.SORT_SIZE; j++) {
+                    values[j] = (int) (Math.random() * Constants.SORT_MAX_VALUE);
+                }
+                Arrays.sort(values);
+            break;
 
 			case REVERSE:
 				int[] tmp = Arrays.copyOf(values, values.length);

@@ -2,7 +2,7 @@ package org.aitek.sorting.core;
 
 public enum Randomness {
 
-	RANDOM("Random"), ALMOST_SORTED("Almost sorted"), REVERSE("Reverse"), FEW_VALUES("Few Values");
+	RANDOM("Random"), ALMOST_SORTED("Almost sorted"), ALREADY_SORTED("Already sorted"), REVERSE("Reverse"), FEW_VALUES("Few Values");
 
 	private String value;
 
