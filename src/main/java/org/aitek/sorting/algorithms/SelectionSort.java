@@ -52,28 +52,4 @@ public class SelectionSort extends AbstractSort {
 
         return new int[]{i, j};
     }
-
-    @Override
-    public String getHTMLSourceCode() {
-
-        StringBuilder alg = new StringBuilder("<pre>\n");
-        alg.append("\nfor (i = 0; i &lt; values.length - 1; i++) {");
-        alg.append("\n\tmin = i;");
-        alg.append("\n\tfor (j = i + 1; j &lt; values.length; j++) {");
-        alg.append("\n\t\tif (values[min] &gt; values[j]) {");
-        alg.append("\n\t\t\tmin = j;");
-        alg.append("\n\t\t}");
-        alg.append("\n\t}");
-        alg.append("\n");
-        alg.append("\n\tif (min != i) {");
-        alg.append("\n\t\tint k = values[min];");
-        alg.append("\n\t\tvalues[min] = values[i];");
-        alg.append("\n\t\tvalues[i] = k;");
-        alg.append("\n\t}");
-        alg.append("\n}");
-        alg.append("\n</pre><br/>More details on: <a href=\"http://en.wikipedia.org/wiki/Selection_sort\">http://en.wikipedia.org/wiki/Selection_sort</a><br/>&nbsp;</html>");
-
-        return "<html><h3>Selection Sort</h3><table width=\"500\"><tr><td>works as follows:<br/>" + "<ul><li>Find the minimum value in the list</li>" + "<li>Swap it with the value in the first position</li>" + "<li>Repeat the steps above for the remainder of the list (starting at the second position and advancing each time)</li></ul>" + " Effectively, the list is divided into two parts: the sublist of items already sorted, which is built up from left to right and is found at the beginning, and the sublist of items remaining to be sorted, occupying the remainder of the array.</td></tr></table>" + alg.toString();
-
-    }
 }

@@ -23,7 +23,7 @@ public class SortPanel extends JPanel {
         borderFinished = BorderFactory.createTitledBorder(new LineBorder(Constants.DOTS_FINISHED_COLOR, 2), sortName);
         borderFinished.setTitleColor(Constants.DOTS_FINISHED_COLOR);
         setBorder(borderWorking);
-        setToolTipText(sortStrategy.getHTMLSourceCode());
+        setToolTipText(sortStrategy.getHtmlSourceCode());
     }
 
     @Override
@@ -34,22 +34,32 @@ public class SortPanel extends JPanel {
         int[] values = sortStrategy.getData();
         int changed1 = sortStrategy.getLastCoupleChanged()[0];
         int changed2 = sortStrategy.getLastCoupleChanged()[1];
+        int compared1 = sortStrategy.getLastCoupleCompared()[0];
+        int compared2 = sortStrategy.getLastCoupleCompared()[1];
 
         if (sortStrategy.isFinished()) {
             setBorder(borderFinished);
-        } else setBorder(borderWorking);
+        }
+        else setBorder(borderWorking);
 
         for (int j = 0; j < values.length; j++) {
+            if (sortStrategy.isFinished()) g.setColor(Constants.DOTS_FINISHED_COLOR);
+            else g.setColor(Constants.DOTS_COLOR);
+            draw(g, 1, j, 0, values);
+
             if (j == changed1 || j == changed2) {
                 g.setColor(Constants.DOTS_CHANGED_COLOR);
-                size = 5;
-            } else {
-                if (sortStrategy.isFinished()) g.setColor(Constants.DOTS_FINISHED_COLOR);
-                else g.setColor(Constants.DOTS_COLOR);
-                size = 1;
+                draw(g, 5, j, -2, values);
             }
-            g.drawRect(j + 2, Constants.SORT_MAX_VALUE - values[j] + 15, size, size);
+            if (j == compared1 || j == compared2) {
+                g.setColor(Constants.DOTS_COMPARED_COLOR);
+                draw(g, 5, j, -2, values);
+            }
         }
+    }
+
+    private void draw(Graphics g, int size, int index, int shift, int[] values) {
+        g.drawRect(index + Constants.EMPTY_FRAME_SIZE + shift, Constants.SORT_MAX_VALUE - values[index] + 15 + shift, size, size);
     }
 
     public void setSortStrategy(SortStrategy sortStrategy) {

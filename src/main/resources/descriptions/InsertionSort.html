@@ -1,0 +1,30 @@
+<html>
+<h3>Insertion Sort</h3>
+<table width="500">
+    <tr>
+        <td>works by repeatedly taking the next item and inserting it into the final data structure in its proper order
+            with respect to items already inserted.
+        </td>
+    </tr>
+</table>
+<br/>
+<pre>
+<b>Source code</b>:<br/>
+for (i = 1; i < values.length; i++) {
+	j = i;
+	int iValue = values[i];
+	while ((j > 0) && (values[j - 1] > iValue)) {
+		values[j] = values[j - 1];
+		j--;
+	}
+
+	values[j] = iValue;
+}
+</pre>
+<br/>
+More details on: <a href=\"http://en.wikipedia.org/wiki/Insertion_sort\">http://en.wikipedia.org/wiki/Insertion_sort</a><br/>&nbsp;
+</html>
+
+return alg.toString();
+
+}

@@ -2,15 +2,15 @@ package org.aitek.sorting.algorithms;
 
 public interface SortStrategy extends Runnable {
 
-    public int[] getData();
+    int[] getData();
 
-    public void setData(int[] values);
+    void setData(int[] values);
 
-    public boolean isFinished();
+    boolean isFinished();
 
-    public int[] getLastCoupleChanged();
+    int[] getLastCoupleChanged();
 
-    public int[] getLastCoupleCompared();
+    int[] getLastCoupleCompared();
 
-    public String getHTMLSourceCode();
+    String getHtmlSourceCode();
 }

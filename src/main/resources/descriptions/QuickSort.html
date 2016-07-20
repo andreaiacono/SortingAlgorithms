@@ -1,0 +1,51 @@
+<html>
+<h3>Quick Sort</h3>
+<table width="500">
+    <tr>
+        <td>sorts by employing a divide and conquer strategy to divide a list into two sub-lists. The steps are:
+            <ul>
+                <li>Pick an element, called a pivot, from the list</li>
+                <li>Reorder the list so that all elements with values less than the pivot come before the pivot, while
+                    all elements with values greater than the pivot come after it (equal values can go either way).
+                    After this partitioning, the pivot is in its final position (this is the <i>partition operation</i>)
+                <li>Recursively sort the sub-list of lesser elements and the sub-list of greater elements</li>
+        </td>
+    </tr>
+</table>
+<b>Source code</b>:<br/>
+<pre>
+private int[] quicksort(int[] array, int lo, int hi) {
+        
+    if (hi > lo) {
+        int pivotIndex = (int) (Math.random() * (hi - lo) + lo);
+        newPivotIndex = partition(array, lo, hi, pivotIndex);
+        quicksort(array, lo, newPivotIndex - 1);
+        quicksort(array, newPivotIndex + 1, hi);
+    }
+    return (int[]) array;
+}
+        
+private int partition(int[] array, int lo, int hi, int pivotIndex) {
+        
+    int pivotValue = array[pivotIndex];
+    swap(array, pivotIndex, hi);
+    index = lo;
+    for (i = lo; i &lt; hi; i++) {
+       if (array[i] <= pivotValue) {
+            swap(array, i, index);
+            index++;
+        }
+    }
+    swap(array, hi, index);
+    return index;
+}
+        
+private void swap(int[] array, int i, int j) {
+    int temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+}
+</pre>
+<br/>
+More details on: <a href=\"http://en.wikipedia.org/wiki/Quicksort\">http://en.wikipedia.org/wiki/Quicksort</a>
+</html>

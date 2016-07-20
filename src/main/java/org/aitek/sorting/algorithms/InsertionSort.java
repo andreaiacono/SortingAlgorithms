@@ -48,26 +48,4 @@ public class InsertionSort extends AbstractSort {
 
         return new int[]{j, j - 1};
     }
-
-    @Override
-    public String getHTMLSourceCode() {
-
-        String desc = "<table width=\"500\"><tr><td>works by repeatedly taking the next item and inserting it into the final data structure in its proper order with respect to items already inserted.</td></tr></table>";
-
-        StringBuilder alg = new StringBuilder("<html><h3>Insertion Sort</h3>").append(desc).append("<br/><pre>");
-        alg.append("\nfor (i = 1; i &lt; values.length; i++) {");
-        alg.append("\n\tj = i;");
-        alg.append("\n\tint iValue = values[i];");
-        alg.append("\n\twhile ((j &gt; 0) && (values[j - 1] &gt; iValue)) {");
-        alg.append("\n\t\tvalues[j] = values[j - 1];");
-        alg.append("\n\t\tj--;");
-        alg.append("\n\t}");
-        alg.append("\n");
-        alg.append("\n\tvalues[j] = iValue;");
-        alg.append("\n}");
-        alg.append("\n</pre><br/>More details on: <a href=\"http://en.wikipedia.org/wiki/Insertion_sort\">http://en.wikipedia.org/wiki/Insertion_sort</a><br/>&nbsp;</html>");
-
-        return alg.toString();
-
-    }
 }

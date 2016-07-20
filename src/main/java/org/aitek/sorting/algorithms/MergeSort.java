@@ -82,48 +82,4 @@ public class MergeSort extends AbstractSort {
 
         return new int[]{0, 0};
     }
-
-    @Override
-    public String getHTMLSourceCode() {
-
-        String desc = "<table width=\"500\"><tr><td>works as follows: if the list is of length 0 or 1, then it is already sorted. Otherwise:" + "<ul><li>divide the unsorted list into two sublists of about half the size</li>" + "<li>sort each sublist recursively by re-applying merge sort</li>" + "<li>merge the two sublists back into one sorted list</li></ul></td></tr></table>";
-        StringBuilder alg = new StringBuilder("<html><h3>Merge Sort</h3>").append(desc).append("<br/><pre>");
-        alg.append("private void mergeSort(int[] a, int[] vectorTemp, int left, int right) {");
-        alg.append("\n");
-        alg.append("\n\tif (left &lt; right) {");
-        alg.append("\n\t\tint center = (left + right) / 2;");
-        alg.append("\n\t\tmergeSort(a, vectorTemp, left, center);");
-        alg.append("\n\t\tmergeSort(a, vectorTemp, center + 1, right);");
-        alg.append("\n\t\tmerge(a, vectorTemp, left, center + 1, right);");
-        alg.append("\n\t}");
-        alg.append("\n}");
-        alg.append("\n");
-        alg.append("\nprivate void merge(int[] a, int[] vectorAux, int posLeft, int posRight, int posEnd) {");
-        alg.append("\n");
-        alg.append("\n\tthis.posLeft = posLeft;");
-        alg.append("\n\tthis.posRight = posRight;");
-        alg.append("\n");
-        alg.append("\n\tint endLeft = posRight - 1;");
-        alg.append("\n\tint posAux = posLeft;");
-        alg.append("\n\tint numElemen = posEnd - posLeft + 1;");
-        alg.append("\n");
-        alg.append("\n\twhile (posLeft &lt;= endLeft &amp;&amp; posRight &lt;= posEnd) {");
-        alg.append("\n\t\tif ((a[posLeft]) &lt; (a[posRight])) vectorAux[posAux++] = a[posLeft++];");
-        alg.append("\n\t\telse vectorAux[posAux++] = a[posRight++];");
-        alg.append("\n\t}");
-        alg.append("\n");
-        alg.append("\n\twhile (posLeft &lt;= endLeft)");
-        alg.append("\n\t\tvectorAux[posAux++] = a[posLeft++];");
-        alg.append("\n");
-        alg.append("\n\twhile (posRight &lt;= posEnd)");
-        alg.append("\n\t\tvectorAux[posAux++] = a[posRight++];");
-        alg.append("\n");
-        alg.append("\n\tfor (int i = 0; i &lt; numElemen; i++, posEnd--)");
-        alg.append("\n\t\ta[posEnd] = vectorAux[posEnd];");
-        alg.append("\n}");
-        alg.append("\n</pre><br/>More details on: <a href=\"http://en.wikipedia.org/wiki/Merge_sort\">http://en.wikipedia.org/wiki/Merge_sort</a><br/>&nbsp;</html>");
-
-        return alg.toString();
-
-    }
 }

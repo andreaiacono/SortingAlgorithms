@@ -1,0 +1,41 @@
+<html>
+<h3>Radix Sort</h3>
+<table width="500">
+    <tr>
+        <td>sorts integers by processing individual digits, by comparing individual digits sharing the same significant
+            position. It starts by sorting numbers according to their least significant bits, and then move onto more
+            significant ones, until we reach the end (at which point, the array will be sorted).
+        </td>
+    </tr>
+</table>
+<br/>
+<b>Source code</b>:<br/>
+<pre>
+int bits = 1;
+int[] b = new int[values.length];
+
+int rshift = 0;
+for (int mask = ~(-1 << bits); mask != 0; mask <<= bits, rshift += bits) {
+	int[] cntarray = new int[1 << bits];
+
+	for (p = 0; p < values.length; ++p) {
+		int key = (values[p] & mask) >> rshift;
+		++cntarray[key];
+	}
+
+	for (int i = 1; i < cntarray.length; ++i)
+		cntarray[i] += cntarray[i - 1];
+
+	for (p = a.length - 1; p >= 0; --p) {
+		int key = (values[p] & mask) >> rshift;
+		--cntarray[key];
+		b[cntarray[key]] = values[p];
+	}
+
+	int[] temp = b;
+	b = values;
+	values = temp;
+}
+</pre>
+<br/>More details on: <a
+        href=\"http://en.wikipedia.org/wiki/Radix_sort\">http://en.wikipedia.org/wiki/Radix_sort</a><br/>&nbsp;</html>

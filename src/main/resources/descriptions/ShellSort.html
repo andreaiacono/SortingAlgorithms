@@ -1,0 +1,32 @@
+<html>
+<h3>Shell Sort</h3>
+<table width="500">
+    <tr>
+        <td>improves <i>Insertion Sort</i> by allowing the comparison and exchange of elements that are far apart. The
+            last step of Shell sort is a plain insertion sort, but by then, the array of data is guaranteed to be almost
+            sorted.
+        </td>
+    </tr>
+</table>
+
+<br/>
+<b>Source code</b>:<br/>
+<pre>
+int n = values.length;
+int inc = Math.round(n / 2);
+while (inc > 0) {
+	for (int i = inc; i <= n - 1; i++) {
+		temp = values[i];
+		j = i;
+		while (j >= inc && values[j - inc] > temp) {
+			values[j] = values[j - inc];
+			j = j - inc;
+
+		}
+		values[j] = temp;
+	}
+	inc = Math.round((float) (inc / 2.2));
+}
+</pre>
+<br/>More details on: <a
+        href=\"http://en.wikipedia.org/wiki/Shell_sort\">http://en.wikipedia.org/wiki/Shell_sort</a><br/>&nbsp;</html>

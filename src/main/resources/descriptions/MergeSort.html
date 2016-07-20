@@ -1,0 +1,51 @@
+<html>
+<h3>Merge Sort</h3>
+<table width="500">
+    <tr>
+        <td>works as follows: if the list is of length 0 or 1, then it is already sorted. Otherwise:
+            <ul>
+                <li>divide the unsorted list into two sublists of about half the size</li>
+                <li>sort each sublist recursively by re-applying merge sort</li>
+                <li>merge the two sublists back into one sorted list</li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<br/>
+<b>Source code</b>:<br/>
+<pre>
+private void mergeSort(int[] a, int[] vectorTemp, int left, int right) {
+
+	if (left < right) {
+		int center = (left + right) / 2;
+		mergeSort(a, vectorTemp, left, center);
+		mergeSort(a, vectorTemp, center + 1, right);
+		merge(a, vectorTemp, left, center + 1, right);
+	}
+}
+
+private void merge(int[] a, int[] vectorAux, int posLeft, int posRight, int posEnd) {
+
+	this.posLeft = posLeft;
+	this.posRight = posRight;
+
+	int endLeft = posRight - 1;
+	int posAux = posLeft;
+	int numElemen = posEnd - posLeft + 1;
+
+	while (posLeft <= endLeft && posRight <= posEnd) {
+		if ((a[posLeft]) < (a[posRight])) vectorAux[posAux++] = a[posLeft++];
+		else vectorAux[posAux++] = a[posRight++];
+	}
+
+	while (posLeft <= endLeft)
+		vectorAux[posAux++] = a[posLeft++];
+
+	while (posRight <= posEnd)
+		vectorAux[posAux++] = a[posRight++];
+
+	for (int i = 0; i < numElemen; i++, posEnd--)
+		a[posEnd] = vectorAux[posEnd];
+}
+</pre>
+<br/>More details on: <a href=\"http://en.wikipedia.org/wiki/Merge_sort\">http://en.wikipedia.org/wiki/Merge_sort</a><br/>&nbsp;</html>

@@ -1,5 +1,7 @@
 package org.aitek.sorting.core;
 
+import java.util.Arrays;
+
 public enum Randomness {
 
     RANDOM("Random"), ALMOST_SORTED("Almost sorted"), ALREADY_SORTED("Already sorted"), REVERSE("Reverse"), FEW_VALUES("Few Values");
@@ -16,9 +18,6 @@ public enum Randomness {
     }
 
     public static Randomness get(String value) {
-        for (Randomness randomness : Randomness.values()) {
-            if (randomness.toString().equals(value)) return randomness;
-        }
-        return null;
+        return Arrays.stream(Randomness.values()).filter(val -> val.toString().equals(value)).findAny().orElse(null);
     }
 }

@@ -22,7 +22,6 @@ public class Main extends JFrame implements ActionListener, ChangeListener {
     private JButton jbStart;
     private JButton jbStep;
     private boolean isFinished;
-    private JLabel randomnessValueLabel;
 
     public Main() throws Exception {
 
@@ -201,7 +200,8 @@ public class Main extends JFrame implements ActionListener, ChangeListener {
 
             if (e.getActionCommand().equals("Quit")) {
                 System.exit(0);
-            } else if (e.getActionCommand().equals("Start")) {
+            }
+            else if (e.getActionCommand().equals("Start")) {
                 isFinished = false;
                 jbStop.setEnabled(true);
                 jbStep.setEnabled(false);
@@ -209,16 +209,18 @@ public class Main extends JFrame implements ActionListener, ChangeListener {
                 sortsController.setStopClicked(false);
                 Thread t = new Thread(sortsController);
                 t.start();
-            } else if (e.getActionCommand().equals("Stop")) {
-                System.err.println("executed");
+            }
+            else if (e.getActionCommand().equals("Stop")) {
                 jbStart.setEnabled(true);
                 jbStep.setEnabled(true);
                 jbStop.setEnabled(false);
                 sortsController.setStopClicked(true);
-            } else if (e.getActionCommand().equals("Step")) {
+            }
+            else if (e.getActionCommand().equals("Step")) {
                 sortsController.setStopClicked(true);
                 sortsController.stepPanels();
-            } else if (e.getActionCommand().equals("Shuffle")) {
+            }
+            else if (e.getActionCommand().equals("Shuffle")) {
 
                 if (isFinished) {
                     jbStart.setEnabled(true);
@@ -226,19 +228,14 @@ public class Main extends JFrame implements ActionListener, ChangeListener {
                 }
 
                 sortsController.shuffle();
-            } else if (e.getActionCommand().equals("comboBoxChanged")) {
+            }
+            else if (e.getActionCommand().equals("comboBoxChanged")) {
 
                 JComboBox cb = (JComboBox) e.getSource();
                 Randomness randomness = Randomness.get(cb.getSelectedItem().toString());
                 sortsController.setRandomness(randomness);
-                try {
+                // do we really want that changing the dropdown cancel the actual sorting?
 //                    sortsController.shuffle();
-                }
-                catch (Exception e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
-
             }
         }
         catch (Exception ex) {
